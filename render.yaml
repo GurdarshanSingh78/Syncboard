@@ -7,7 +7,3 @@ services:
     envVars:
       - key: DATA_DIR
         value: /app/data
-    disk:
-      name: syncboard-data
-      mountPath: /app/data
-      sizeGB: 1
