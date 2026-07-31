@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SyncBoard — Mock Interview Whiteboard</title>
+<link rel="stylesheet" href="/css/theme.css" />
+<link rel="stylesheet" href="/css/landing.css" />
+</head>
+<body>
+  <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme" aria-pressed="false">
+    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="1.5" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22.5" y2="12"/><line x1="4.4" y1="4.4" x2="6.5" y2="6.5"/><line x1="17.5" y1="17.5" x2="19.6" y2="19.6"/><line x1="4.4" y1="19.6" x2="6.5" y2="17.5"/><line x1="17.5" y1="6.5" x2="19.6" y2="4.4"/></g></svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M20.5 14.9A8.6 8.6 0 1 1 9.1 3.5a7 7 0 0 0 11.4 11.4Z"/></svg>
+  </button>
+
+  <div class="stage">
+    <div class="grain"></div>
+    <header class="hero">
+      <div class="eyebrow"><span class="dot"></span>Ephemeral rooms · no account · closes when everyone leaves</div>
+      <h1>Two cursors.<br />One canvas.<br /><span class="ink">Every keystroke remembered.</span></h1>
+      <p class="lede">SyncBoard is a shared whiteboard and code pad built for mock technical interviews — then it plays the whole session back, stroke by stroke, so you can see exactly where you stalled.</p>
+    </header>
+
+    <section class="panel" aria-label="Start a session">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="create" role="tab" aria-selected="true">Start a room</button>
+        <button class="tab" data-tab="join" role="tab" aria-selected="false">Join a room</button>
+      </div>
+
+      <form id="createForm" class="tab-panel" data-panel="create">
+        <label class="field">
+          <span>Your name</span>
+          <input type="text" id="createName" placeholder="Gurdarshan" required maxlength="24" />
+        </label>
+        <label class="field">
+          <span>Your role for this session</span>
+          <div class="segmented">
+            <input type="radio" name="createRole" id="createInterviewer" value="interviewer" />
+            <label for="createInterviewer">Interviewer</label>
+            <input type="radio" name="createRole" id="createCandidate" value="candidate" checked />
+            <label for="createCandidate">Candidate</label>
+          </div>
+        </label>
+        <button type="submit" class="cta">Create room <span class="cta-arrow">→</span></button>
+      </form>
+
+      <form id="joinForm" class="tab-panel hidden" data-panel="join">
+        <label class="field">
+          <span>Your name</span>
+          <input type="text" id="joinName" placeholder="Shubhkaram" required maxlength="24" />
+        </label>
+        <label class="field">
+          <span>Room code</span>
+          <input type="text" id="joinCode" placeholder="8F3K2A" required maxlength="8" class="mono code-input" autocomplete="off" />
+        </label>
+        <label class="field">
+          <span>Your role for this session</span>
+          <div class="segmented">
+            <input type="radio" name="joinRole" id="joinInterviewer" value="interviewer" />
+            <label for="joinInterviewer">Interviewer</label>
+            <input type="radio" name="joinRole" id="joinCandidate" value="candidate" checked />
+            <label for="joinCandidate">Candidate</label>
+          </div>
+        </label>
+        <button type="submit" class="cta">Join room <span class="cta-arrow">→</span></button>
+      </form>
+      <p class="err" id="formError"></p>
+    </section>
+
+    <section class="specs">
+      <div class="spec">
+        <span class="spec-index">Sync</span>
+        <p>Raw WebSockets with sequence numbers, resumable reconnects, and exponential backoff — no socket.io.</p>
+      </div>
+      <div class="spec">
+        <span class="spec-index">Merge</span>
+        <p>An RGA sequence CRDT for the code pad and a tombstoned stroke set for the canvas, so concurrent edits converge.</p>
+      </div>
+      <div class="spec">
+        <span class="spec-index">Replay</span>
+        <p>Every stroke and keystroke is logged as an event and snapshotted, so any session scrubs back at any speed.</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="/js/theme.js"></script>
+  <script src="/js/landing.js"></script>
+</body>
+</html>

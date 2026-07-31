@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SyncBoard — Room</title>
+<link rel="stylesheet" href="/css/theme.css" />
+<link rel="stylesheet" href="/css/room.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark"></span>
+        SyncBoard
+      </div>
+
+      <button class="room-code mono" id="roomCodeBtn" title="Copy room code">
+        <span id="roomCodeText">------</span>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" stroke-width="1.8"/></svg>
+      </button>
+
+      <svg class="pulse" id="pulseSvg" viewBox="0 0 160 28" preserveAspectRatio="none">
+        <polyline id="pulseLine" points="0,14 160,14" />
+      </svg>
+
+      <div class="avatar-list" id="avatarList"></div>
+
+      <a class="ghost-btn" id="replayLink" href="#" target="_blank">Replay</a>
+
+      <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme" aria-pressed="false">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="12" y1="1.5" x2="12" y2="4.5"/><line x1="12" y1="19.5" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="4.5" y2="12"/><line x1="19.5" y1="12" x2="22.5" y2="12"/><line x1="4.4" y1="4.4" x2="6.5" y2="6.5"/><line x1="17.5" y1="17.5" x2="19.6" y2="19.6"/><line x1="4.4" y1="19.6" x2="6.5" y2="17.5"/><line x1="17.5" y1="6.5" x2="19.6" y2="4.4"/></g></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M20.5 14.9A8.6 8.6 0 1 1 9.1 3.5a7 7 0 0 0 11.4 11.4Z"/></svg>
+      </button>
+    </header>
+
+    <main class="workspace" id="workspace">
+      <section class="pane code-pane" id="codePane">
+        <div class="pane-head">
+          <span class="pane-title">main.py</span>
+          <span class="pane-sub mono" id="codeCount">0 chars</span>
+        </div>
+        <div class="editor-wrap">
+          <pre class="editor-highlight" aria-hidden="true"><code id="highlightEl"></code></pre>
+          <textarea id="codeTextarea" class="editor-input mono" spellcheck="false" placeholder="// start typing — this pad syncs live and merges concurrent edits"></textarea>
+        </div>
+      </section>
+
+      <div class="divider" id="divider"></div>
+
+      <section class="pane board-pane" id="boardPane">
+        <div class="pane-head">
+          <span class="pane-title">Whiteboard</span>
+          <div class="toolbar">
+            <button class="tool-btn active" data-tool="pen" title="Pen">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 20l3.5-.7L18.6 8.2a2 2 0 0 0 0-2.8l-.9-.9a2 2 0 0 0-2.8 0L3.7 15.6 3 19l1 1Z" stroke="currentColor" stroke-width="1.7"/></svg>
+            </button>
+            <button class="tool-btn" data-tool="eraser" title="Eraser">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 20H8l-5-5a2 2 0 0 1 0-2.8L12 3l9 9-6 6" stroke="currentColor" stroke-width="1.7"/></svg>
+            </button>
+            <div class="swatches" id="swatches"></div>
+            <input type="range" min="1" max="14" value="3" id="widthRange" />
+            <button class="tool-btn" id="clearBoard" title="Clear board (local)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2m2 0-1 14a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1L6 6" stroke="currentColor" stroke-width="1.7"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="board-wrap" id="boardWrap"></div>
+      </section>
+    </main>
+
+    <footer class="statusbar mono">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusText">connecting…</span>
+      <span class="sep">·</span>
+      <span id="seqText">seq 0</span>
+      <span class="sep">·</span>
+      <span id="roleText">role —</span>
+      <span class="sep">·</span>
+      <span id="latencyText">— ms</span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="/js/theme.js"></script>
+  <script src="/js/rga.js"></script>
+  <script src="/js/lexer.js"></script>
+  <script src="/js/sync-client.js"></script>
+  <script src="/js/canvas-board.js"></script>
+  <script src="/js/codepad.js"></script>
+  <script src="/js/presence.js"></script>
+  <script src="/js/room.js"></script>
+</body>
+</html>

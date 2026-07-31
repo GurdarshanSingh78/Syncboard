@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: syncboard
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    envVars:
+      - key: DATA_DIR
+        value: /app/data
+    disk:
+      name: syncboard-data
+      mountPath: /app/data
+      sizeGB: 1

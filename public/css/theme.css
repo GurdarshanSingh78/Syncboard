@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #0B0E14;
+  --surface: #12161F;
+  --surface-2: #1A1F2C;
+  --surface-3: #212739;
+  --border: #232A3D;
+  --border-soft: #1B2233;
+  --text: #E8EAF0;
+  --text-muted: #8890A4;
+  --text-faint: #5B6377;
+  --accent: #F2A93B;
+  --accent-dim: #B9812C;
+  --accent-ink: #0B0E14;
+  --sync: #3ECFCF;
+  --sync-dim: #24807F;
+  --danger: #E4587C;
+  --grid-line: rgba(232, 234, 240, 0.045);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.45);
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.3);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --font-display: 'Instrument Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: #F5F5F1;
+  --surface: #FFFFFF;
+  --surface-2: #FBFBF9;
+  --surface-3: #EFEFEA;
+  --border: #DCDCD5;
+  --border-soft: #E7E7E1;
+  --text: #14161C;
+  --text-muted: #63666F;
+  --text-faint: #9B9DA6;
+  --accent: #B9700E;
+  --accent-dim: #8F5A0F;
+  --accent-ink: #FFFFFF;
+  --sync: #0E8C8C;
+  --sync-dim: #0B6E6E;
+  --danger: #C23A5D;
+  --grid-line: rgba(20, 22, 28, 0.05);
+  --shadow-lg: 0 24px 60px rgba(20, 20, 15, 0.12);
+  --shadow-sm: 0 2px 10px rgba(20, 20, 15, 0.08);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-faint);
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--sync);
+  outline-offset: 2px;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
